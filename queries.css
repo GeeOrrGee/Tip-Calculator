@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 10px;
+    font-family: 'Space Mono', sans-serif;
+}
+
+@media (max-width: 37em) {
+    body {
+        gap: 1.6rem;
+    }
+    body img {
+        margin-top: 2rem;
+    }
+    .outter-wrapper {
+        flex-direction: column;
+    }
+    .right-side {
+        gap: 2rem;
+        padding: 2.5rem 2rem;
+    }
+    .result-wrapper {
+        gap: 1.4rem;
+    }
+    .final-value img {
+        margin: 0;
+    }
+}
+
+@media (max-width: 22em) {
+    .outter-wrapper {
+        padding: 0.8rem 1rem;
+    }
+}

@@ -1,0 +1,205 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 10px;
+    font-family: 'Space Mono', sans-serif;
+}
+
+input,
+button {
+    font-family: 'Space Mono', sans-serif;
+}
+body {
+    min-height: 100vh;
+
+    background-color: hsl(185, 41%, 84%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 7rem;
+}
+
+.outter-wrapper {
+    display: flex;
+    max-width: 100rem;
+    gap: 4rem;
+    font-size: 1.6rem;
+    background-color: #fff;
+    padding: 3rem 3.2rem;
+    border-radius: 1.2rem;
+    align-items: center;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    gap: 2.6rem;
+}
+/* ******* INPUT ELEMENTS ******** */
+label,
+h2 {
+    font-size: 1.1rem;
+
+    font-weight: 700;
+    color: hsl(186, 14%, 43%);
+}
+
+.not-custom input {
+    width: 100%;
+    min-height: 2rem;
+    padding: 0.4rem 1.2rem;
+    border: none;
+    background-color: hsl(189, 41%, 97%);
+    border-radius: 0.4rem;
+    background-image: url(/images/icon-dollar.svg);
+    background-repeat: no-repeat;
+    background-position: 5% 50%;
+    background-size: 0.9rem;
+    cursor: pointer;
+    text-align: right;
+    color: hsl(183, 100%, 15%);
+    font-size: 1.7rem;
+
+    font-weight: 700;
+    margin-top: 0.6rem;
+}
+input::placeholder {
+    color: hsl(184, 14%, 56%);
+    opacity: 0.7;
+}
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.15rem hsl(172, 67%, 45%);
+    transition: all 0.2s;
+}
+
+input:active {
+    box-shadow: 0 0 0 0.15rem hsl(172, 67%, 45%);
+    transition: all 0.2s;
+}
+
+.invalid-input input {
+    box-shadow: 0 0 0 0.15rem hsl(0, 67%, 45%);
+}
+
+.not-custom input {
+    background-image: url(/images/icon-person.svg);
+    background-repeat: no-repeat;
+}
+
+/* ******** BUTTONS ********** */
+.tip-prcnt h2 {
+    margin-bottom: 1.4rem;
+}
+
+.btn-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.btn-wrapper button {
+    border: none;
+    background-color: hsl(183, 100%, 15%);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 7.8rem;
+}
+
+#custom {
+    background-color: hsl(189, 41%, 97%);
+    color: hsl(186, 14%, 43%);
+    font-weight: 700;
+}
+
+.btn-wrapper button:hover,
+.btn-wrapper button:active {
+    background-color: rgba(38, 192, 171, 0.452);
+    transition: all 0.1s;
+
+    color: hsl(183, 100%, 15%);
+}
+
+/* ******** RIGHT SIDE ********** */
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    gap: 10rem;
+    background-color: hsl(183, 100%, 15%);
+    color: hsl(189, 41%, 97%);
+    padding: 3.5rem 3rem;
+    border-radius: 1rem;
+}
+
+.result-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.result-wrapper div {
+    display: flex;
+    justify-content: space-between;
+    gap: 8rem;
+    align-items: center;
+}
+
+.result-wrapper div p {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.result-wrapper div p span {
+    font-size: 1rem;
+    color: hsl(186, 14%, 43%);
+}
+
+.final-value {
+    display: flex;
+    align-items: center;
+}
+
+.final-value span {
+    font-size: 3rem !important;
+    color: hsl(172, 67%, 45%) !important;
+}
+
+.final-value img {
+    align-self: center;
+    min-height: 2.4rem;
+}
+
+.reset /*INACTIVE*/ {
+    border: none;
+    width: 100%;
+    background-color: hsla(172, 44%, 46%, 0.252);
+    color: hsl(183, 100%, 15%);
+    padding: 0.8rem 1.6rem;
+    border-radius: 0.6rem;
+    font-weight: 700;
+    pointer-events: none;
+}
+
+.reset-active {
+    cursor: pointer;
+    background-color: hsl(172, 67%, 45%);
+    pointer-events: all;
+}
+
+.reset-active:hover,
+.reset-active:active {
+    cursor: pointer;
+    background-color: hsl(180, 74%, 79%);
+    transition: all 0.3s;
+}
