@@ -51,14 +51,7 @@ function customInput() {
 
         function customPercentageHandler() {
             newInput.addEventListener('onclick', () => {
-                if (
-                    isNaN(parseInt(billInput.value)) ||
-                    0 ||
-                    isNaN(parseInt(newInput.value)) ||
-                    0 ||
-                    isNaN(parseInt(pplNumber.value)) ||
-                    0
-                ) {
+                if (validityCheck(newInput)) {
                     document
                         .querySelector('#invalid-ppl')
                         .classList.toggle('invalid-input');
@@ -75,17 +68,8 @@ function customInput() {
                         .querySelector('#invalid-ppl')
                         .classList.remove('invalid-input');
                 }
-                const customTip =
-                    (parseInt(billInput.value) / parseInt(newInput.value)) *
-                    100;
-                const customTotalValue = parseInt(billInput.value) + customTip;
-                const customTipPerPerson =
-                    customTip / parseInt(pplNumber.value);
-                const totalValuePerPerson =
-                    customTotalValue / parseInt(pplNumber.value);
 
-                tipElement.innerText = customTipPerPerson.toFixed(2);
-                totalElement.innerText = totalValuePerPerson.toFixed(2);
+                calculation(newInput);
             });
         }
 
@@ -99,19 +83,11 @@ function customInput() {
 function main() {
     for (const button of buttons) {
         button.addEventListener('click', () => {
-            if (
-                isNaN(parseInt(billInput.value)) ||
-                '' ||
-                0 ||
-                isNaN(parseInt(button.value)) ||
-                0 ||
-                isNaN(parseInt(pplNumber.value)) ||
-                0
-            ) {
+            if (validityCheck(button)) {
                 console.log(parseInt(button.value));
                 document
                     .querySelector('#invalid-ppl')
-                    .classList.toggle('invalid-input');
+                    .classList.add('invalid-input');
                 return alert(
                     'Invalid Input! Only numbers higher than 0 are allowed. Enter the value of the bill and a number of people first.'
                 );
@@ -124,16 +100,32 @@ function main() {
                     .querySelector('#invalid-ppl')
                     .classList.remove('invalid-input');
             }
-            const tip =
-                (parseInt(billInput.value) * parseInt(button.value)) / 100;
-            const finalValue = parseInt(billInput.value) + tip;
-            const perPersonFinal = finalValue / parseInt(pplNumber.value);
-            const perPersonTip = tip / parseInt(pplNumber.value);
-            tipElement.textContent = perPersonTip.toFixed(2);
-            totalElement.textContent = perPersonFinal.toFixed(2);
+            calculation(button);
             resetBtn.classList.add('reset-active');
         });
     }
+}
+
+function calculation(percentValue) {
+    const tip =
+        (parseInt(billInput.value) * parseInt(percentValue.value)) / 100;
+    const finalValue = parseInt(billInput.value) + tip;
+    const perPersonFinal = finalValue / parseInt(pplNumber.value);
+    const perPersonTip = tip / parseInt(pplNumber.value);
+    tipElement.textContent = perPersonTip.toFixed(2);
+    totalElement.textContent = perPersonFinal.toFixed(2);
+}
+
+function validityCheck(inputValues) {
+    return (
+        isNaN(parseInt(billInput.value)) ||
+        '' ||
+        0 ||
+        isNaN(parseInt(inputValues.value)) ||
+        0 ||
+        isNaN(parseInt(pplNumber.value)) ||
+        0
+    );
 }
 
 main();
