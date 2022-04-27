@@ -43,21 +43,21 @@ function customInput() {
         newInput.style.textAlign = 'right';
         newInput.style.color = 'hsl(183, 100%, 15%)';
         newInput.style.fontSize = '1.7rem';
-        newInput.setAttribute('value', ``);
-        newInput.setAttribute('type', 'text');
+        newInput.setAttribute('value', '');
+        newInput.setAttribute('type', 'number');
         newInput.placeholder = '0';
-        newInputStore = newInput;
+
         customBtn.replaceWith(newInput); // Styles and replacing elements
 
         function customPercentageHandler() {
-            newInput.addEventListener('onclick', () => {
+            newInput.addEventListener('input', (event) => {
                 if (validityCheck(newInput)) {
+                    console.log(parseInt(newInput.value));
                     document
                         .querySelector('#invalid-ppl')
-                        .classList.toggle('invalid-input');
-                    newInput.replaceWith(customBtn);
+                        .classList.add('invalid-input');
                     return alert(
-                        'Invalid Input! Only numbers higher than 0 are allowed. Enter the value of the bill and a number of people.'
+                        'Invalid Input! Only numbers higher than 0 are allowed. Enter the value of the bill and a number of people first.'
                     );
                 } else if (
                     document
@@ -70,6 +70,7 @@ function customInput() {
                 }
 
                 calculation(newInput);
+                resetBtn.classList.add('reset-active');
             });
         }
 
@@ -108,7 +109,8 @@ function main() {
 
 function calculation(percentValue) {
     const tip =
-        (parseInt(billInput.value) * parseInt(percentValue.value)) / 100;
+        (parseInt(percentValue.value) * parseInt(billInput.value)) / 100;
+    console.log(percentValue);
     const finalValue = parseInt(billInput.value) + tip;
     const perPersonFinal = finalValue / parseInt(pplNumber.value);
     const perPersonTip = tip / parseInt(pplNumber.value);
@@ -119,12 +121,11 @@ function calculation(percentValue) {
 function validityCheck(inputValues) {
     return (
         isNaN(parseInt(billInput.value)) ||
-        '' ||
-        0 ||
+        parseInt(billInput.value) <= 0 ||
         isNaN(parseInt(inputValues.value)) ||
-        0 ||
+        parseInt(inputValues.value) <= 0 ||
         isNaN(parseInt(pplNumber.value)) ||
-        0
+        parseInt(pplNumber.value) <= 0
     );
 }
 
